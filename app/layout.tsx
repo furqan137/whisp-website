@@ -12,6 +12,7 @@ const geistMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+/* ---------------- SEO ---------------- */
 export const metadata: Metadata = {
   title: {
     default: "Whisp — Private Messaging. Reinvented.",
@@ -37,13 +38,18 @@ export const metadata: Metadata = {
   },
 }
 
+/* ---------------- MOBILE VIEWPORT LOCK ---------------- */
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
   width: "device-width",
   initialScale: 1,
+  minimumScale: 1,
   maximumScale: 1,
+  userScalable: false,
+  viewportFit: "cover",
+  themeColor: "#0a0a0a",
 }
 
+/* ---------------- LAYOUT ---------------- */
 export default function RootLayout({
   children,
 }: {
@@ -54,12 +60,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans bg-neutral-950 text-neutral-100 antialiased overflow-x-hidden`}
       >
-        {/* HARD WIDTH LOCK — prevents all mobile sideways scroll */}
-        <div className="relative w-full overflow-x-hidden">
-          <div className="min-h-screen flex flex-col overflow-x-hidden">
+        {/* Background stabilizer (prevents white edges on iOS) */}
+        <div className="fixed inset-0 -z-50 bg-neutral-950" />
+
+        {/* HARD WIDTH LOCKER */}
+        <main className="relative w-screen max-w-[100vw] overflow-x-hidden">
+          <div className="min-h-screen w-full flex flex-col overflow-x-hidden">
             {children}
           </div>
-        </div>
+        </main>
       </body>
     </html>
   )
