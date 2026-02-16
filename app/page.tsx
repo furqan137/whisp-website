@@ -17,12 +17,12 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Glow background */}
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[900px] h-[500px] bg-blue-500/20 blur-[140px]" />
-          <div className="absolute right-0 top-40 w-[600px] h-[400px] bg-cyan-400/20 blur-[140px]" />
-        </div>
+<div className="absolute inset-0 -z-10 overflow-hidden">
+  <div className="absolute left-1/2 top-0 -translate-x-1/2 w-[140vw] max-w-[900px] h-[500px] bg-blue-500/20 blur-[140px]" />
+  <div className="absolute right-0 top-40 w-[140vw] max-w-[600px] h-[400px] bg-cyan-400/20 blur-[140px]" />
+</div>
 
-        <div className="max-w-6xl mx-auto px-6 pt-28 pb-24 text-center">
+      <div className="max-w-6xl mx-auto px-6 pt-36 md:pt-28 pb-24 text-center">
           <div className="flex justify-center mb-6">
             <Image
               src="/app_icon.png"
@@ -97,7 +97,7 @@ export default function Home() {
       <div className="relative rounded-[40px] border border-white/10 bg-black/40 p-4 backdrop-blur-xl shadow-2xl">
 
         {/* Phone frame */}
-        <div className="relative w-[280px] aspect-[9/19] rounded-[28px] overflow-hidden bg-neutral-900">
+       <div className="relative w-[70vw] max-w-[280px] aspect-[9/19] rounded-[28px] overflow-hidden bg-neutral-900">
 
           <Image
             src="/screens/preview.png"
@@ -246,7 +246,7 @@ export default function Home() {
       </section>
       {/* Screenshots Showcase */}
       <section className="py-32">
-        <div className="max-w-6xl mx-auto px-6">
+       <div className="max-w-6xl mx-auto px-5 sm:px-6 overflow-hidden">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-20">
             Experience Whisp
           </h2>
@@ -366,3 +366,4 @@ export default function Home() {
     </div>
   );
 }
+
