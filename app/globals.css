@@ -2,19 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ------------------ FONT ------------------ */
+/* ---------------- FONTS ---------------- */
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ------------------ UTILITIES ------------------ */
+/* ---------------- UTILITIES ---------------- */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
-/* ------------------ THEME COLORS ------------------ */
+/* ---------------- THEME ---------------- */
 @layer base {
   :root {
     --background: 12 22% 8%;
@@ -62,7 +62,6 @@ body {
   }
 }
 
-/* Apply theme */
 @layer base {
   * {
     @apply border-border;
@@ -73,33 +72,36 @@ body {
 }
 
 /* ================================================= */
-/*        MOBILE OVERFLOW PROTECTION (IMPORTANT)     */
+/*          MOBILE WIDTH + ZOOM HARD FIX             */
 /* ================================================= */
 
-/* Lock viewport width (fix iOS sideways scroll) */
+/* Lock layout width */
 html {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Prevent layout from exceeding screen */
+/* Prevent sideways movement */
 body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
   position: relative;
+  overscroll-behavior-x: none;
+  touch-action: pan-y;
 }
 
-/* Prevent any element from expanding page */
+/* Prevent any element expanding layout */
 *,
 *::before,
 *::after {
-  max-width: 100%;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
-/* Images & videos safe scaling */
+/* Next.js image fix */
 img,
 video,
 canvas,
@@ -108,19 +110,27 @@ svg {
   height: auto;
 }
 
-/* Prevent blur / transform overflow */
-[class*="blur"],
-[class*="translate"],
-[class*="scale"] {
-  will-change: transform;
-}
-
-/* Fix Next.js image fill overflow */
+/* Fix Next/Image fill overflow */
 img[data-nimg="fill"] {
   object-fit: cover;
 }
 
-/* iOS Safari overscroll fix */
-body {
-  overscroll-behavior-x: none;
+/* Prevent blur glow from expanding page */
+.blur,
+[class*="blur-"] {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Prevent vw overflow bug */
+main {
+  width: 100vw;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* iOS rubber band scrolling fix */
+html, body {
+  overscroll-behavior-y: none;
 }
