@@ -39,6 +39,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#0a0a0a",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 }
 
 export default function RootLayout({
@@ -47,12 +50,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-neutral-950 text-neutral-100 antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans bg-neutral-950 text-neutral-100 antialiased overflow-x-hidden`}
       >
-        <div className="min-h-screen flex flex-col">
-          {children}
+        {/* HARD WIDTH LOCK — prevents all mobile sideways scroll */}
+        <div className="relative w-full overflow-x-hidden">
+          <div className="min-h-screen flex flex-col overflow-x-hidden">
+            {children}
+          </div>
         </div>
       </body>
     </html>
