@@ -2,16 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------ FONT ------------------ */
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* ------------------ UTILITIES ------------------ */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
+/* ------------------ THEME COLORS ------------------ */
 @layer base {
   :root {
     --background: 12 22% 8%;
@@ -33,21 +36,9 @@ body {
     --border: 12 20% 20%;
     --input: 12 20% 14%;
     --ring: 217 91% 60%;
-    --chart-1: 217 91% 60%;
-    --chart-2: 12 75% 50%;
-    --chart-3: 180 70% 50%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
     --radius: 0.5rem;
-    --sidebar-background: 12 22% 8%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 12 22% 8%;
-    --sidebar-accent: 217 91% 60%;
-    --sidebar-accent-foreground: 12 22% 8%;
-    --sidebar-border: 12 20% 20%;
-    --sidebar-ring: 217 91% 60%;
   }
+
   .dark {
     --background: 12 22% 8%;
     --foreground: 0 0% 98%;
@@ -68,22 +59,10 @@ body {
     --border: 12 20% 20%;
     --input: 12 20% 14%;
     --ring: 217 91% 60%;
-    --chart-1: 217 91% 60%;
-    --chart-2: 12 75% 50%;
-    --chart-3: 180 70% 50%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 12 22% 8%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 217 91% 60%;
-    --sidebar-primary-foreground: 12 22% 8%;
-    --sidebar-accent: 217 91% 60%;
-    --sidebar-accent-foreground: 12 22% 8%;
-    --sidebar-border: 12 20% 20%;
-    --sidebar-ring: 217 91% 60%;
   }
 }
 
+/* Apply theme */
 @layer base {
   * {
     @apply border-border;
@@ -91,4 +70,57 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* ================================================= */
+/*        MOBILE OVERFLOW PROTECTION (IMPORTANT)     */
+/* ================================================= */
+
+/* Lock viewport width (fix iOS sideways scroll) */
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent layout from exceeding screen */
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Prevent any element from expanding page */
+*,
+*::before,
+*::after {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Images & videos safe scaling */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent blur / transform overflow */
+[class*="blur"],
+[class*="translate"],
+[class*="scale"] {
+  will-change: transform;
+}
+
+/* Fix Next.js image fill overflow */
+img[data-nimg="fill"] {
+  object-fit: cover;
+}
+
+/* iOS Safari overscroll fix */
+body {
+  overscroll-behavior-x: none;
 }
